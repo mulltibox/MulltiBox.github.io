@@ -14,165 +14,80 @@ async function uploadVideo(){
     const file = document.getElementById("videoFile").files[0];
 
     if(!file){
+
         alert("Please select a video");
         return null;
-    }
 
+    }
 
     const status = document.getElementById("uploadStatus");
 
-
     return new Promise((resolve, reject)=>{
 
+        const formData = new FormData();
 
-        const chunkSize = 5 * 1024 * 1024; // 5 MB chunks
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset);
 
-        let start = 0;
+        const xhr = new XMLHttpRequest();
 
-        let uploadId = null;
+        xhr.open(
+            "POST",
+            `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`
+        );
 
 
+        // Upload Progress
+        xhr.upload.onprogress = function(e){
 
-        function uploadChunk(){
+            if(e.lengthComputable){
 
-
-            const chunk = file.slice(
-                start,
-                start + chunkSize
-            );
-
-
-            const xhr = new XMLHttpRequest();
-
-
-
-            xhr.open(
-                "POST",
-                `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`
-            );
-
-
-
-            xhr.setRequestHeader(
-                "X-Unique-Upload-Id",
-                uploadId || crypto.randomUUID()
-            );
-
-
-
-            xhr.setRequestHeader(
-                "Content-Range",
-                `bytes ${start}-${start + chunk.size - 1}/${file.size}`
-            );
-
-
-
-            const formData = new FormData();
-
-            formData.append(
-                "file",
-                chunk
-            );
-
-            formData.append(
-                "upload_preset",
-                uploadPreset
-            );
-
-
-
-            xhr.upload.onprogress = function(event){
-
-
-                if(event.lengthComputable){
-
-
-                    let uploaded =
-                    start + event.loaded;
-
-
-                    let percent =
-                    Math.round(
-                        (uploaded / file.size) * 100
-                    );
-
-
-                    status.innerHTML =
-                    `Uploading video... ${percent}%`;
-
-                }
-
-            };
-
-
-
-            xhr.onload = function(){
-
-
-                if(xhr.status === 200){
-
-
-                    const data =
-                    JSON.parse(xhr.responseText);
-
-
-                    resolve(data.secure_url);
-
-
-                }
-
-
-                else if(xhr.status === 308){
-
-
-                    start += chunk.size;
-
-                    uploadChunk();
-
-
-                }
-
-
-                else{
-
-
-                    status.innerHTML =
-                    "Upload failed ❌";
-
-                    reject(xhr.responseText);
-
-                }
-
-            };
-
-
-
-            xhr.onerror = function(){
-
-
-                status.innerHTML =
-                "Connection lost, retrying...";
-
-
-                setTimeout(
-                    uploadChunk,
-                    3000
+                let percent = Math.round(
+                    (e.loaded / e.total) * 100
                 );
 
+                status.innerHTML =
+                `Uploading Video... ${percent}%`;
 
-            };
+            }
 
-
-
-            xhr.send(formData);
-
-
-        }
+        };
 
 
+        xhr.onload = function(){
 
-        uploadChunk();
+            if(xhr.status == 200){
 
+                const data = JSON.parse(xhr.responseText);
+
+                status.innerHTML =
+                "Upload Complete ✅";
+
+                resolve(data.secure_url);
+
+            }else{
+
+                status.innerHTML =
+                "Upload Failed ❌";
+
+                reject(xhr.responseText);
+
+            }
+
+        };
+
+
+        xhr.onerror = function(){
+
+            status.innerHTML =
+            "Network Error ❌";
+
+            reject("Network Error");
+
+        };
+
+
+        xhr.send(formData);
 
     });
 
