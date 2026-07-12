@@ -111,8 +111,8 @@ async function addMovie(){
 
         image: document.getElementById("movieImage").value,
 
-        videoUrl: document.getElementById("videoUrl").value,
-
+        videoUrl: await uploadVideo(),
+        
         desc: document.getElementById("movieDesc").value,
 
         category: document.getElementById("movieCategory").value,
