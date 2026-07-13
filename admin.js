@@ -6,135 +6,223 @@ import {
     getDocs,
     deleteDoc,
     doc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} 
+from 
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
 
 const cloudName = "liqcadtf";
 const uploadPreset = "mulltibox_uploads";
 
 
-async function uploadVideo(){
 
-    const file = document.getElementById("videoFile").files[0];
+
+
+// ============================
+// CLOUDINARY UPLOAD
+// ============================
+
+
+async function uploadVideo(fileInput,statusID){
+
+
+    const file =
+    document.getElementById(fileInput).files[0];
+
 
     if(!file){
 
-        alert("Please select a video");
+        alert("Please select video");
+
         return null;
 
     }
 
-    const status = document.getElementById("uploadStatus");
 
-    return new Promise((resolve, reject)=>{
+
+    const status =
+    document.getElementById(statusID);
+
+
+
+    return new Promise((resolve,reject)=>{
+
 
         const formData = new FormData();
 
-        formData.append("file", file);
-        formData.append("upload_preset", uploadPreset);
 
-        const xhr = new XMLHttpRequest();
-
-        xhr.open(
-            "POST",
-            `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`
+        formData.append(
+            "file",
+            file
         );
 
 
-        // Upload Progress
-        xhr.upload.onprogress = function(e){
+        formData.append(
+            "upload_preset",
+            uploadPreset
+        );
+
+
+
+        const xhr = new XMLHttpRequest();
+
+
+
+        xhr.open(
+
+        "POST",
+
+        `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`
+
+        );
+
+
+
+
+        xhr.upload.onprogress=function(e){
+
 
             if(e.lengthComputable){
 
-                let percent = Math.round(
-                    (e.loaded / e.total) * 100
+
+                let percent =
+                Math.round(
+                (e.loaded/e.total)*100
                 );
 
+
                 status.innerHTML =
-                `Uploading Video... ${percent}%`;
+                `Uploading ${percent}%`;
 
             }
+
 
         };
 
 
-        xhr.onload = function(){
 
-            if(xhr.status == 200){
 
-                const data = JSON.parse(xhr.responseText);
+
+
+        xhr.onload=function(){
+
+
+            if(xhr.status===200){
+
+
+                let data =
+                JSON.parse(xhr.responseText);
+
 
                 status.innerHTML =
                 "Upload Complete ✅";
 
+
                 resolve(data.secure_url);
 
-            }else{
-
-                status.innerHTML =
-                "Upload Failed ❌";
-
-                reject(xhr.responseText);
 
             }
 
+            else{
+
+
+                reject("Upload Failed");
+
+
+            }
+
+
         };
 
-
-        xhr.onerror = function(){
-
-            status.innerHTML =
-            "Network Error ❌";
-
-            reject("Network Error");
-
-        };
 
 
         xhr.send(formData);
 
+
+
     });
 
+
+
 }
+
+
+
+
+
+
+
+// ============================
 // ADD MOVIE
+// ============================
+
 
 async function addMovie(){
 
 
-    let movie = {
+
+let movie={
 
 
-        title: document.getElementById("movieTitle").value,
-
-        genre: document.getElementById("movieGenre").value,
-
-        year: document.getElementById("movieYear").value,
-
-        image: document.getElementById("movieImage").value,
-
-        videoUrl: await uploadVideo(),
-        
-        desc: document.getElementById("movieDesc").value,
-
-        category: document.getElementById("movieCategory").value,
+title:
+document.getElementById("movieTitle").value,
 
 
-        rating:"8.5",
-
-        quality:"HD"
-
-
-    };
+genre:
+document.getElementById("movieGenre").value,
 
 
+year:
+document.getElementById("movieYear").value,
 
-    await addDoc(collection(db,"movies"), movie);
+
+image:
+document.getElementById("movieImage").value,
+
+
+videoUrl:
+await uploadVideo(
+"videoFile",
+"uploadStatus"
+),
 
 
 
-    alert("Movie Added Successfully");
+desc:
+document.getElementById("movieDesc").value,
 
 
-    showMovies();
+
+category:"Movies",
+
+
+rating:"8.5",
+
+quality:"HD"
+
+
+};
+
+
+
+
+
+await addDoc(
+
+collection(db,"movies"),
+
+movie
+
+);
+
+
+
+alert("Movie Added Successfully");
+
+
+showMovies();
+
 
 
 }
@@ -142,58 +230,307 @@ async function addMovie(){
 
 
 
-// SHOW MOVIES IN ADMIN
+
+
+
+
+// ============================
+// ADD SERIES
+// ============================
+
+
+async function addSeries(){
+
+
+
+let series={
+
+
+title:
+document.getElementById("seriesTitle").value,
+
+
+genre:
+document.getElementById("seriesGenre").value,
+
+
+year:
+document.getElementById("seriesYear").value,
+
+
+image:
+document.getElementById("seriesImage").value,
+
+
+desc:
+document.getElementById("seriesDesc").value,
+
+
+category:"Series",
+
+
+rating:"8.5",
+
+quality:"HD"
+
+
+};
+
+
+
+
+
+let ref =
+await addDoc(
+
+collection(db,"movies"),
+
+series
+
+);
+
+
+
+alert(
+"Series Created ID:\n"+ref.id
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ============================
+// ADD ANIME
+// ============================
+
+
+async function addAnime(){
+
+
+
+let anime={
+
+
+title:
+document.getElementById("animeTitle").value,
+
+
+genre:
+document.getElementById("animeGenre").value,
+
+
+year:
+document.getElementById("animeYear").value,
+
+
+image:
+document.getElementById("animeImage").value,
+
+
+desc:
+document.getElementById("animeDesc").value,
+
+
+category:"Anime",
+
+
+rating:"8.5",
+
+quality:"HD"
+
+
+};
+
+
+
+
+let ref =
+await addDoc(
+
+collection(db,"movies"),
+
+anime
+
+);
+
+
+
+alert(
+"Anime Created ID:\n"+ref.id
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ============================
+// ADD EPISODE
+// ============================
+
+
+async function addEpisode(){
+
+
+
+let episode={
+
+
+
+parentID:
+document.getElementById("episodeParent").value,
+
+
+
+title:
+document.getElementById("episodeTitle").value,
+
+
+
+episodeNumber:
+document.getElementById("episodeNumber").value,
+
+
+
+image:
+document.getElementById("episodeImage").value,
+
+
+
+desc:
+document.getElementById("episodeDesc").value,
+
+
+
+videoUrl:
+
+await uploadVideo(
+
+"episodeVideo",
+
+"episodeUploadStatus"
+
+)
+
+
+};
+
+
+
+
+
+await addDoc(
+
+collection(db,"episodes"),
+
+episode
+
+);
+
+
+
+alert(
+"Episode Added Successfully"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ============================
+// SHOW DATABASE
+// ============================
+
 
 async function showMovies(){
 
 
-    let list = document.getElementById("movieList");
-
-
-    if(!list) return;
-
-
-
-    list.innerHTML="";
+let list =
+document.getElementById("movieList");
 
 
 
-    const snapshot = await getDocs(collection(db,"movies"));
+if(!list)return;
 
 
 
-    snapshot.forEach((doc)=>{
-
-
-        let movie = doc.data();
+list.innerHTML="";
 
 
 
-        list.innerHTML += `
+const snapshot =
+await getDocs(
+
+collection(db,"movies")
+
+);
 
 
-        <div class="movie-item">
+
+snapshot.forEach((doc)=>{
 
 
-        <h3>${movie.title}</h3>
 
-        <p>${movie.category}</p>
-
-
-        <button onclick="deleteMovie('${doc.id}')">
-
-        Delete
-
-        </button>
+let movie=doc.data();
 
 
-        </div>
+
+list.innerHTML += `
 
 
-        `;
+<div class="movie-item">
 
 
-    });
+<h3>
+${movie.title}
+</h3>
+
+
+<p>
+${movie.category}
+</p>
+
+
+
+<button onclick="deleteMovie('${doc.id}')">
+
+Delete
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
 
 
 
@@ -201,23 +538,50 @@ async function showMovies(){
 
 
 
-// DELETE MOVIE
+
+
+
+
+
+
+// ============================
+// DELETE
+// ============================
+
 
 async function deleteMovie(id){
 
 
-    await deleteDoc(doc(db,"movies",id));
+await deleteDoc(
+
+doc(db,"movies",id)
+
+);
 
 
-    showMovies();
+showMovies();
 
 
 }
 
 
 
-window.addMovie = addMovie;
-window.deleteMovie = deleteMovie;
+
+
+
+
+
+
+window.addMovie=addMovie;
+
+window.addSeries=addSeries;
+
+window.addAnime=addAnime;
+
+window.addEpisode=addEpisode;
+
+window.deleteMovie=deleteMovie;
+
 
 
 
