@@ -234,13 +234,12 @@ async function loadSeries(){
 
 
         <a 
-        href="episode-player.html?id=${episodeDoc.id}"
+        href="series-player.html?id=${episodeDoc.id}"
         class="watch-btn">
 
         Watch Episode
 
         </a>
-
 
 
         </div>
