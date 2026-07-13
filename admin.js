@@ -148,7 +148,107 @@ async function uploadVideo(fileInput,statusID){
 }
 
 
+async function addTrending(){
 
+
+let data={
+
+title:
+document.getElementById("trendingTitle").value,
+
+genre:
+document.getElementById("trendingGenre").value,
+
+year:
+document.getElementById("trendingYear").value,
+
+image:
+document.getElementById("trendingImage").value,
+
+desc:
+document.getElementById("trendingDesc").value,
+
+
+videoUrl:
+await uploadVideo(
+"trendingVideo",
+"trendingUploadStatus"
+),
+
+
+category:"Trending",
+
+rating:"8.5",
+
+quality:"HD"
+
+};
+
+
+await addDoc(
+collection(db,"movies"),
+data
+);
+
+
+alert("Trending Added Successfully");
+
+showMovies();
+
+}
+
+
+
+
+
+async function addRecommended(){
+
+
+let data={
+
+title:
+document.getElementById("recommendedTitle").value,
+
+genre:
+document.getElementById("recommendedGenre").value,
+
+year:
+document.getElementById("recommendedYear").value,
+
+image:
+document.getElementById("recommendedImage").value,
+
+desc:
+document.getElementById("recommendedDesc").value,
+
+
+videoUrl:
+await uploadVideo(
+"recommendedVideo",
+"recommendedUploadStatus"
+),
+
+
+category:"Recommended",
+
+rating:"8.5",
+
+quality:"HD"
+
+};
+
+
+await addDoc(
+collection(db,"movies"),
+data
+);
+
+
+alert("Recommended Added Successfully");
+
+showMovies();
+
+}
 
 
 
@@ -573,6 +673,10 @@ showMovies();
 
 
 window.addMovie=addMovie;
+
+window.addTrending = addTrending;
+
+window.addRecommended = addRecommended;
 
 window.addSeries=addSeries;
 
