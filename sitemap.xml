@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://sitemaps.org">
-
-  <!-- Change REPLACE_WITH_YOUR_URL to your actual GitHub website URL -->
-  
   <url>
     <loc>https://mulltibox.github.io/index.html</loc>
   </url>
@@ -57,5 +54,4 @@
   <url>
     <loc>https://mulltibox.github.io/trending.html</loc>
   </url>
-
 </urlset>
