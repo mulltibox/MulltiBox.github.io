@@ -1,52 +1,376 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-<title>Admin Dashboard</title>
+<title>MulltiBox Admin Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="admin.css">
 
 </head>
 
+
 <body>
 
-<div class="admin-panel">
 
-<h1>MulltiBox DataBase</h1>
-
-<input type="text" id="movieTitle" placeholder="Movie Title">
-
-<input type="text" id="movieGenre" placeholder="Genre">
-
-<input type="text" id="movieYear" placeholder="Release Year">
-
-<input type="text" id="movieImage" placeholder="Poster Image URL">
-
-<input type="file" id="videoFile" accept="video/mp4">
-<p id="uploadStatus"></p>
-    
-<textarea id="movieDesc" placeholder="Movie Description"></textarea>
-
-<select id="movieCategory">
-    <option value="Movies">Movies</option>
-    <option value="Trending">Trending</option>
-    <option value="Recommended">Recommended</option>
-    <option value="Anime">Anime</option>
-    <option value="Series">Series</option>
-</select>
+<div class="admin-dashboard">
 
 
-<button onclick="addMovie()">Add Movie</button>
+
+<!-- HEADER -->
+
+<div class="admin-header">
+
+<h1>
+🚀 MulltiBox Control Panel
+</h1>
+
+<p>
+Manage Movies • Series • Anime • Episodes
+</p>
+
+</div>
 
 
-<h2>Added Movies</h2>
 
-<div id="movieList"></div>
+
+
+<!-- CONTENT TYPE SELECT -->
+
+<div class="dashboard-menu">
+
+
+<button onclick="showSection('movieSection')">
+🎬 Movies
+</button>
+
+
+<button onclick="showSection('seriesSection')">
+📺 Series
+</button>
+
+
+<button onclick="showSection('animeSection')">
+🎌 Anime
+</button>
+
+
+<button onclick="showSection('episodeSection')">
+🎞 Episodes
+</button>
 
 
 </div>
 
 
+
+
+
+
+
+<!-- MOVIE SECTION -->
+
+
+<div class="admin-section active" id="movieSection">
+
+
+<h2>
+🎬 Add Movie
+</h2>
+
+
+
+<input id="movieTitle"
+placeholder="Movie Title">
+
+
+
+<input id="movieGenre"
+placeholder="Genre">
+
+
+
+<input id="movieYear"
+placeholder="Release Year">
+
+
+
+<input id="movieImage"
+placeholder="Poster Image URL">
+
+
+
+<input type="file"
+id="videoFile"
+accept="video/mp4">
+
+
+
+<p id="uploadStatus"></p>
+
+
+
+<textarea id="movieDesc"
+placeholder="Movie Description">
+</textarea>
+
+
+
+<button onclick="addMovie()">
+➕ Add Movie
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- SERIES SECTION -->
+
+
+<div class="admin-section" id="seriesSection">
+
+
+<h2>
+📺 Add Series
+</h2>
+
+
+
+<input id="seriesTitle"
+placeholder="Series Name">
+
+
+
+<input id="seriesGenre"
+placeholder="Genre">
+
+
+
+<input id="seriesYear"
+placeholder="Release Year">
+
+
+
+<input id="seriesImage"
+placeholder="Series Poster URL">
+
+
+
+<textarea id="seriesDesc"
+placeholder="Series Description">
+</textarea>
+
+
+
+<button onclick="addSeries()">
+➕ Create Series
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ANIME SECTION -->
+
+
+<div class="admin-section" id="animeSection">
+
+
+<h2>
+🎌 Add Anime
+</h2>
+
+
+
+<input id="animeTitle"
+placeholder="Anime Name">
+
+
+
+<input id="animeGenre"
+placeholder="Genre">
+
+
+
+<input id="animeYear"
+placeholder="Release Year">
+
+
+
+<input id="animeImage"
+placeholder="Anime Poster URL">
+
+
+
+<textarea id="animeDesc"
+placeholder="Anime Description">
+</textarea>
+
+
+
+<button onclick="addAnime()">
+➕ Create Anime
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- EPISODE SECTION -->
+
+
+<div class="admin-section" id="episodeSection">
+
+
+<h2>
+🎞 Episode Manager
+</h2>
+
+
+
+<input id="episodeParent"
+placeholder="Series / Anime ID">
+
+
+
+<input id="episodeTitle"
+placeholder="Episode Name (Episode 1)">
+
+
+
+<input id="episodeNumber"
+placeholder="Episode Number">
+
+
+
+<input id="episodeImage"
+placeholder="Episode Image URL">
+
+
+
+<input type="file"
+id="episodeVideo"
+accept="video/mp4">
+
+
+
+<p id="episodeUploadStatus"></p>
+
+
+
+
+<textarea id="episodeDesc"
+placeholder="Episode Description">
+</textarea>
+
+
+
+<button onclick="addEpisode()">
+➕ Add Episode
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- DATABASE LIST -->
+
+
+<div class="database-area">
+
+
+<h2>
+📂 Database Content
+</h2>
+
+
+
+<div id="movieList">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+function showSection(id){
+
+
+let sections =
+document.querySelectorAll(".admin-section");
+
+
+sections.forEach(section=>{
+
+section.classList.remove("active");
+
+});
+
+
+
+document.getElementById(id)
+.classList.add("active");
+
+}
+
+
+</script>
+
+
+
 <script type="module" src="admin.js"></script>
 
+
 </body>
+
 </html>
