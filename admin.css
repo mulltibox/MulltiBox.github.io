@@ -2,107 +2,623 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Arial',sans-serif;
 }
+
 
 body{
-    height:100vh;
-    background:#050505;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
 
-.login-box{
-    width:350px;
-    padding:35px;
-    background:#111;
-    border-radius:15px;
-    box-shadow:0 0 25px #00ff99;
-    text-align:center;
-}
+    min-height:100vh;
 
-.login-box h1{
-    color:#00ff99;
-    margin-bottom:25px;
-}
+    background:
+    radial-gradient(circle at top,#e5091440,transparent 35%),
+    linear-gradient(180deg,#020202,#0a0a0a);
 
-.login-box input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    background:#222;
-    border:none;
-    outline:none;
     color:white;
-    border-radius:8px;
-}
 
-.login-box button{
-    width:100%;
-    padding:12px;
-    margin-top:15px;
-    background:#00ff99;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.login-box button:hover{
-    background:#00cc77;
-}
-
-#message{
-    color:red;
-    margin-top:15px;
-}
-
-.admin-panel{
-    width:90%;
-    max-width:700px;
-    margin:auto;
     padding:30px;
-    background:#111;
-    color:white;
-    border-radius:15px;
-    box-shadow:0 0 25px #00ff99;
+
 }
 
-.admin-panel h1{
-    color:#00ff99;
+
+
+/* MAIN DASHBOARD */
+
+
+.admin-dashboard{
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+
+
+
+
+/* HEADER */
+
+
+.admin-header{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    padding:30px;
+
+    border-radius:20px;
+
     text-align:center;
+
+    box-shadow:0 0 40px rgba(229,9,20,.25);
+
     margin-bottom:25px;
+
 }
 
-.admin-panel input,
-.admin-panel textarea{
 
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    background:#222;
+
+.admin-header h1{
+
+    font-size:38px;
+
+    color:#e50914;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.admin-header p{
+
+    color:#aaa;
+
+    font-size:17px;
+
+}
+
+
+
+
+
+
+
+/* MENU */
+
+
+.dashboard-menu{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.dashboard-menu button{
+
+
+    flex:1;
+
+    min-width:180px;
+
+    padding:15px;
+
+    background:#111;
+
     color:white;
-    border:none;
-    border-radius:8px;
-}
 
-.admin-panel textarea{
-    height:100px;
-}
+    border:1px solid rgba(255,255,255,.1);
 
-.admin-panel button{
+    border-radius:15px;
 
-    width:100%;
-    padding:12px;
-    background:#00ff99;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
     cursor:pointer;
 
+    font-weight:bold;
+
+    transition:.3s;
+
 }
+
+
+
+.dashboard-menu button:hover{
+
+    background:#e50914;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 0 25px rgba(229,9,20,.5);
+
+}
+
+
+
+
+
+
+
+/* SECTIONS */
+
+
+.admin-section{
+
+
+    display:none;
+
+
+    background:
+
+    rgba(255,255,255,.05);
+
+
+    border:1px solid rgba(255,255,255,.1);
+
+
+    backdrop-filter:blur(20px);
+
+
+    padding:30px;
+
+
+    border-radius:25px;
+
+
+    margin-bottom:30px;
+
+
+}
+
+
+
+.admin-section.active{
+
+    display:block;
+
+}
+
+
+
+
+
+.admin-section h2{
+
+    color:#e50914;
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+
+
+
+
+
+
+/* INPUTS */
+
+
+.admin-section input,
+.admin-section textarea{
+
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+
+    background:#111;
+
+
+    color:white;
+
+
+    border:1px solid rgba(255,255,255,.15);
+
+
+    border-radius:12px;
+
+
+    outline:none;
+
+
+    font-size:15px;
+
+
+}
+
+
+
+.admin-section textarea{
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+
+.admin-section input:focus,
+.admin-section textarea:focus{
+
+
+    border-color:#e50914;
+
+
+    box-shadow:0 0 20px rgba(229,9,20,.3);
+
+
+}
+
+
+
+
+
+
+
+/* BUTTON */
+
+
+.admin-section button{
+
+
+    width:100%;
+
+
+    padding:15px;
+
+
+    background:#e50914;
+
+
+    color:white;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+    cursor:pointer;
+
+
+    font-weight:bold;
+
+
+    font-size:16px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.admin-section button:hover{
+
+
+    background:white;
+
+    color:black;
+
+    transform:translateY(-5px);
+
+
+}
+
+
+
+
+
+
+
+#uploadStatus,
+#episodeUploadStatus{
+
+
+    color:#00ff99;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+
+
+/* DATABASE */
+
+
+.database-area{
+
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    padding:25px;
+
+    border-radius:20px;
+
+
+}
+
+
+
+.database-area h2{
+
+
+    color:#e50914;
+
+    margin-bottom:20px;
+
+
+}
+
+
+
 
 #movieList{
-    margin-top:20px;
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+
+}
+
+
+
+
+.movie-item{
+
+
+    background:#111;
+
+
+    padding:20px;
+
+
+    border-radius:15px;
+
+
+    border:1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+.movie-item h3{
+
+
+    color:white;
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+
+.movie-item p{
+
+
+    color:#aaa;
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+.movie-item button{
+
+
+    background:#e50914;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.movie-item button:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+
+
+
+
+/* LOGIN PAGE */
+
+
+.login-box{
+
+
+    width:350px;
+
+    padding:35px;
+
+
+    background:#111;
+
+
+    border-radius:20px;
+
+
+    box-shadow:
+
+    0 0 40px rgba(229,9,20,.5);
+
+
+    text-align:center;
+
+
+}
+
+
+
+.login-box h1{
+
+    color:#e50914;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.login-box input{
+
+
+    width:100%;
+
+    padding:14px;
+
+    margin:10px 0;
+
+
+    background:#222;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+
+}
+
+
+
+.login-box button{
+
+
+    width:100%;
+
+    padding:14px;
+
+
+    margin-top:15px;
+
+
+    background:#e50914;
+
+
+    color:white;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+    cursor:pointer;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:700px){
+
+
+body{
+
+    padding:15px;
+
+}
+
+
+
+.admin-header h1{
+
+    font-size:28px;
+
+}
+
+
+
+.dashboard-menu{
+
+    flex-direction:column;
+
+}
+
+
+
+.dashboard-menu button{
+
+    width:100%;
+
+}
+
+
+
+.admin-section{
+
+    padding:20px;
+
+}
+
+
+
 }
