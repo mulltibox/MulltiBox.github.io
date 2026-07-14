@@ -207,6 +207,8 @@ alert(
 
 
 
+
+
 async function addRecommended(){
 
 
@@ -233,7 +235,7 @@ desc:
 document.getElementById("seriesDesc").value,
 
 
-category:"Series",
+category:"Recommmended",
 
 
 rating:"8.5",
@@ -341,10 +343,6 @@ showMovies();
 
 
 
-
-
-
-
 // ============================
 // ADD SERIES
 // ============================
@@ -377,7 +375,7 @@ desc:
 document.getElementById("seriesDesc").value,
 
 
-category:"Series",
+category:"Anime",
 
 
 rating:"8.5",
