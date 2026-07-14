@@ -967,9 +967,8 @@ font-size:20px;
 
 .grid{
 
-
-grid-template-columns:1fr;
-
+grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+gap:12px;
 
 }
 
@@ -993,6 +992,34 @@ width:100%;
 
 text-align:center;
 
+
+}
+
+.card{
+
+padding:12px;
+border-radius:12px;
+
+}
+
+.card h3{
+
+font-size:13px;
+
+}
+
+.card p{
+
+font-size:11px;
+line-height:1.4;
+
+}
+
+.btn{
+
+width:100%;
+padding:8px;
+font-size:11px;
 
 }
 
