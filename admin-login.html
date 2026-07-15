@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Admin Login</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MulltiBox Admin Login</title>
+
 <link rel="stylesheet" href="admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
-<body>
+<body class="login-page">
+
+<div class="overlay"></div>
 
 <div class="login-box">
 
-    <h1>-AUTHENTICATE-</h1>
+<h1>Mullti<span>Box</span></h1>
 
-    <input type="text" id="username" placeholder="Username">
+<p class="subtitle">Administrator Panel</p>
 
-    <input type="password" id="password" placeholder="Password">
+<input
+type="text"
+id="username"
+placeholder="Email Address">
 
-    <button id="loginBtn">LOGIN</button>
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-    <p id="message"></p>
+<button id="loginBtn">
+
+LOGIN
+
+</button>
+
+<p id="message"></p>
 
 </div>
 
 <script type="module" src="login.js"></script>
 
 </body>
+
 </html>
