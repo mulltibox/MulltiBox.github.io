@@ -476,99 +476,259 @@ body{
 
 
 
-/* LOGIN PAGE */
+/*=========================
+        LOGIN PAGE
+=========================*/
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.72),
+    rgba(0,0,0,.82)
+    ),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    backdrop-filter:blur(3px);
+
+}
 
 .login-box{
 
+    position:relative;
 
-    width:350px;
+    z-index:5;
 
-    padding:35px;
+    width:420px;
 
+    max-width:90%;
 
-    background:#111;
+    padding:45px 35px;
 
+    border-radius:28px;
 
-    border-radius:20px;
+    background:rgba(15,15,20,.45);
 
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(22px);
 
     box-shadow:
 
-    0 0 40px rgba(229,9,20,.5);
+    0 25px 60px rgba(0,0,0,.6),
 
+    0 0 40px rgba(229,9,20,.15);
 
-    text-align:center;
-
+    animation:fadeUp .8s ease;
 
 }
-
-
 
 .login-box h1{
 
-    color:#e50914;
+    text-align:center;
 
-    margin-bottom:25px;
+    color:white;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
 
 }
 
+.login-box span{
 
+    color:#e50914;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#cfcfcf;
+
+    margin-bottom:35px;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+}
 
 .login-box input{
 
-
     width:100%;
 
-    padding:14px;
+    padding:16px 20px;
 
-    margin:10px 0;
-
-
-    background:#222;
-
-    color:white;
+    margin-bottom:18px;
 
     border:none;
 
-    border-radius:10px;
+    outline:none;
 
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
 
 }
 
+.login-box input::placeholder{
 
+    color:#cfcfcf;
+
+}
+
+.login-box input:focus{
+
+    border-color:#e50914;
+
+    box-shadow:0 0 20px rgba(229,9,20,.35);
+
+}
 
 .login-box button{
 
-
     width:100%;
 
-    padding:14px;
-
-
-    margin-top:15px;
-
-
-    background:#e50914;
-
-
-    color:white;
-
+    padding:16px;
 
     border:none;
 
+    border-radius:14px;
 
-    border-radius:30px;
+    background:linear-gradient(135deg,#e50914,#ff3030);
 
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
 
     cursor:pointer;
 
-
-    font-weight:bold;
-
+    transition:.35s;
 
 }
 
+.login-box button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(229,9,20,.45);
+
+}
+
+#message{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:#ff8f8f;
+
+    font-weight:600;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.login-box{
+
+width:92%;
+
+padding:35px 25px;
+
+}
+
+.login-box h1{
+
+font-size:34px;
+
+}
+
+.subtitle{
+
+font-size:13px;
+
+}
+
+.login-box input{
+
+padding:14px 16px;
+
+font-size:14px;
+
+}
+
+.login-box button{
+
+padding:14px;
+
+font-size:15px;
+
+}
+
+}
 
 
 
